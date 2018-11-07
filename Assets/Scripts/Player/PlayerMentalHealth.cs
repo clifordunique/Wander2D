@@ -24,6 +24,7 @@ public class PlayerMentalHealth : MonoBehaviour {
 				resetLevel();
 			}
 		}
+		
 	}
 	
 	void OnCollisionEnter2D(Collision2D other)

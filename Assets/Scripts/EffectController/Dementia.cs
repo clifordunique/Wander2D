@@ -9,6 +9,8 @@ public class Dementia : EffectController {
 	static GameObject currItem;
 	bool isDone = true;
 	float effectTimer = 0;
+	SpriteRenderer currSprite;
+	Color tmpColor;
 
 	void Start() {
 		itemsList = GetComponentsInChildren<SpriteRenderer>();
@@ -19,31 +21,31 @@ public class Dementia : EffectController {
 		// print("effectTimer % 60 = " + effectTimer % 60);
 		if(isActive) {
 			effectTimer += Time.deltaTime;
-			if(effectTimer % 60 >= 0 && effectTimer % 60 < 3) {
+			if(effectTimer % 60 < 5) {
 				isDone = false;
-			} else if(effectTimer % 60 >= 3 && effectTimer % 60 < 7){
+			} else if(effectTimer % 60 >= 5 && effectTimer % 60 < 20){
 				isDone = true;
-			} else if(effectTimer % 60 >= 7) {
+			} else if(effectTimer % 60 >= 20) {
 				effectTimer = 0;
 			}
 		}
 
 		if(!isDone && isActive) {
 			for(int i = 0; i < itemsList.Length; i++) {
-				SpriteRenderer currSprite = itemsList[i];
-				Color tmpColor = currSprite.color;
-				if(tmpColor.a != 0)
-					tmpColor.a = tmpColor.a - 0.01f;
+				currSprite = itemsList[i];
+				tmpColor = currSprite.color;
+				if(tmpColor.a > 0)
+					tmpColor.a -= 0.003f;
 				currSprite.color = tmpColor;
 			}
 		}
 		
 		if(isDone || !isActive){
 			for(int i = 0; i < itemsList.Length; i++) {
-				SpriteRenderer currSprite = itemsList[i];
-				Color tmpColor = currSprite.color;
-				if(tmpColor.a != 1)
-					tmpColor.a = tmpColor.a + 0.01f;
+				currSprite = itemsList[i];
+				tmpColor = currSprite.color;
+				if(tmpColor.a < 0.10)
+					tmpColor.a += 0.005f;
 				currSprite.color = tmpColor;
 			}
 		}

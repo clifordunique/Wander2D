@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
-	float moveSpeed = 2;
+	float moveSpeed = 1.5f;
 
 	public float gravity;
 	float maxJumpVelocity;
