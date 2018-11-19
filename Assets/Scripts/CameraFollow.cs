@@ -8,6 +8,7 @@ public class CameraFollow : MonoBehaviour {
 	public float lookAheadDstX;
 	public float lookSmoothTimeX;
 	public float verticalSmoothTime;
+	public float maxY;
 	public Vector2 focusAreaSize;
 
 	FocusArea focusArea;
@@ -18,9 +19,12 @@ public class CameraFollow : MonoBehaviour {
 	float smoothLookVelocityX;
 	float smoothVelocityY;
 
+	Vector3 initialPosition;
+
 	bool lookAheadStopped;
 
 	void Start() {
+		initialPosition = transform.position;
 		focusArea = new FocusArea (target.collider.bounds, focusAreaSize);
 	}
 
@@ -46,6 +50,7 @@ public class CameraFollow : MonoBehaviour {
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
 		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);
+		focusPosition.x = Mathf.Clamp(focusPosition.x, initialPosition.x, maxY);
 		focusPosition += Vector2.right * currentLookAheadX;
 		transform.position = (Vector3)focusPosition + Vector3.forward * -10;
 	}
