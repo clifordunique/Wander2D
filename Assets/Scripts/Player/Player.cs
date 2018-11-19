@@ -169,17 +169,8 @@ public class Player : MonoBehaviour {
 
 		if(other.gameObject.CompareTag("FallDetector")) {
 			transform.position = respawnPoint;
-			Color transparent = gameObject.GetComponent<SpriteRenderer>().color;
-			transparent.a = 0;
-			gameObject.GetComponent<SpriteRenderer>().color = transparent;
-			isDead = true;
+			respawn();
 			// StartCoroutine(Flash(FlashingTime, TimeInterval));
-		}
-
-		if(other.gameObject.CompareTag("Checkpoint")) {
-			respawnPoint = other.transform.position;
-			respawnHeight = other.gameObject.GetComponent<Checkpoint>().getRespawnHeight();
-			respawnPoint.y = respawnPoint.y + respawnHeight;
 		}
 	}
 
@@ -188,6 +179,13 @@ public class Player : MonoBehaviour {
 		if(other.gameObject.tag == "Platform" || other.gameObject.tag == "Through") {
 			isGrounded = false;
 		}
+	}
+
+	public void respawn() {
+		Color transparent = gameObject.GetComponent<SpriteRenderer>().color;
+		transparent.a = 0;
+		gameObject.GetComponent<SpriteRenderer>().color = transparent;
+		isDead = true;
 	}
 
 	public float getGravity() {
