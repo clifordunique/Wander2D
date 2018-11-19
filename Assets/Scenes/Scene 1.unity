@@ -2890,7 +2890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1135399761
 Transform:
   m_ObjectHideFlags: 0
@@ -4152,13 +4152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723d676b93a5469498cb4f06ae45e476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rateOfFade: 0
+  rateOfFade: 0.025
   gameObjectsToDisable:
   - {fileID: 2055028258}
   gameObjectsToEnable:
   - {fileID: 1938277178}
   - {fileID: 1543497902}
-  spritesToDisable: []
+  spritesToDisable:
+  - {fileID: 1837794287}
+  - {fileID: 1135399760}
   spritesToEnable: []
   disableSprites: 0
 --- !u!61 &1580304979
@@ -4781,7 +4783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1837794288
 Transform:
   m_ObjectHideFlags: 0
@@ -4865,7 +4867,7 @@ Transform:
   m_GameObject: {fileID: 1901160088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.99, y: 5.16, z: 0}
-  m_LocalScale: {x: 1, y: 3.862497, z: 1}
+  m_LocalScale: {x: 0.0056250016, y: 3.862497, z: 1}
   m_Children: []
   m_Father: {fileID: 1235061518}
   m_RootOrder: 3
@@ -5114,7 +5116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!60 &1938277179
 PolygonCollider2D:
   m_ObjectHideFlags: 0
