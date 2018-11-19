@@ -29,7 +29,7 @@ public class RaycastController : MonoBehaviour {
 
 	public void UpdateRaycastOrigins() {
 		Bounds bounds = collider.bounds;
-		bounds.Expand (skinWidth * -2);
+		bounds.Expand (skinWidth * -1);
 		
 		raycastOrigins.bottomLeft = new Vector2 (bounds.min.x, bounds.min.y);
 		raycastOrigins.bottomRight = new Vector2 (bounds.max.x, bounds.min.y);
@@ -39,7 +39,7 @@ public class RaycastController : MonoBehaviour {
 	
 	public void CalculateRaySpacing() {
 		Bounds bounds = collider.bounds;
-		bounds.Expand (skinWidth * -2);
+		bounds.Expand (skinWidth * -1);
 		
 		horizontalRayCount = Mathf.Clamp (horizontalRayCount, 2, int.MaxValue);
 		verticalRayCount = Mathf.Clamp (verticalRayCount, 2, int.MaxValue);
