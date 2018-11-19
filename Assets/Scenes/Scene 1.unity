@@ -5491,7 +5491,7 @@ MonoBehaviour:
   TimeInterval: 0.1
   moveSpeed: 1.5
   gravity: 0
-  fadeInSpeed: 0.01
+  fadeInSpeed: 0
 --- !u!95 &1944975816
 Animator:
   serializedVersion: 3
