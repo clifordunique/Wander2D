@@ -139,7 +139,7 @@ public class Player : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if(other.gameObject.CompareTag("Platform")) {
+		if(other.gameObject.CompareTag("Platform") || other.gameObject.CompareTag("Through")) {
 			isGrounded = true;
 			animator.ResetTrigger("Jump");
 			animator.SetBool("Falling", false);
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionExit2D(Collision2D other)
 	{
-		if(other.gameObject.tag == "Platform") {
+		if(other.gameObject.tag == "Platform" || other.gameObject.tag == "Through") {
 			isGrounded = false;
 		}
 	}
