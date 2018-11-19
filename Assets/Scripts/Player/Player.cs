@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	float respawnHeight;
 
 	float xSize;
+	float pxSize;
+	float pxPosition;
 
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
@@ -31,10 +33,16 @@ public class Player : MonoBehaviour {
 	float minJumpVelocity;
 	Vector3 velocity;
 	float velocityXSmoothing;
+	bool isDead = false;
+	public float fadeInSpeed;
 
 	Controller2D controller;
+	Transform prompt;
 
 	void Start() {
+		prompt = transform.Find("Prompt");
+		pxSize = prompt.localScale.x;
+		pxPosition = prompt.localPosition.x;
 		xSize = transform.localScale.x;
 		controller = GetComponent<Controller2D> ();
 		respawnPoint = transform.position;
@@ -53,6 +61,14 @@ public class Player : MonoBehaviour {
 	void Update() {
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
+		if(isDead) {
+			Color tempColor = gameObject.GetComponent<SpriteRenderer>().color;
+			tempColor.a += fadeInSpeed;
+			if(tempColor.a >= 1)
+				isDead = false;
+			gameObject.GetComponent<SpriteRenderer>().color = tempColor;
+		}
+
 		if(!isGrounded) {
 			walkParticles.Stop();
 		} else {
@@ -64,10 +80,16 @@ public class Player : MonoBehaviour {
 		if(Input.GetAxisRaw("Horizontal") != 0) {
 			animator.SetInteger("Walk", 1);
 
-			if(Input.GetAxisRaw("Horizontal") > 0)
+			if(Input.GetAxisRaw("Horizontal") > 0) {
 				transform.localScale = new Vector3(xSize, transform.localScale.y, transform.localScale.z);
-			else if(Input.GetAxisRaw("Horizontal") < 0)
+				prompt.localPosition = new Vector3(pxPosition, prompt.localPosition.y, prompt.localPosition.z);
+				prompt.localScale = new Vector3(pxSize, prompt.localScale.y, prompt.localScale.z);
+			}
+			else if(Input.GetAxisRaw("Horizontal") < 0) {
 				transform.localScale = new Vector3(-(xSize), transform.localScale.y, transform.localScale.z);
+				prompt.localPosition = new Vector3(-(pxPosition), prompt.localPosition.y, prompt.localPosition.z);
+				prompt.localScale = new Vector3(-(pxSize), prompt.localScale.y, prompt.localScale.z);
+			}
 
 			if(isGrounded)
 				walkParticles.Play();
@@ -147,6 +169,10 @@ public class Player : MonoBehaviour {
 
 		if(other.gameObject.CompareTag("FallDetector")) {
 			transform.position = respawnPoint;
+			Color transparent = gameObject.GetComponent<SpriteRenderer>().color;
+			transparent.a = 0;
+			gameObject.GetComponent<SpriteRenderer>().color = transparent;
+			isDead = true;
 			// StartCoroutine(Flash(FlashingTime, TimeInterval));
 		}
 
