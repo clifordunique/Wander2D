@@ -45,11 +45,19 @@ public class Player : MonoBehaviour {
 		// print ("Gravity: " + gravity + "  Jump Velocity: " + maxJumpVelocity);
 	}
 
+	void FixedUpdate()
+	{
+		HandleLayers();
+	}
+
 	void Update() {
+
+
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
-		if(!isGrounded)
+		if(!isGrounded) {
 			walkParticles.Stop();
+		}
 
 		if(Input.GetAxisRaw("Horizontal") != 0) {
 			animator.SetInteger("Walk", 1);
@@ -67,16 +75,23 @@ public class Player : MonoBehaviour {
 			walkParticles.Stop();
 		}
 
-
 		float targetVelocityX = input.x * moveSpeed;
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetButtonDown ("Jump")) {
+			animator.SetTrigger("Jump");
 			if (controller.collisions.below) {
 				velocity.y = maxJumpVelocity;
 			}
 		}
-		if (Input.GetKeyUp (KeyCode.Space)) {
+
+		print(velocity.y);
+
+		if (velocity.y < 0) {
+			animator.SetBool("Falling", true);
+		}
+
+		if (Input.GetButtonUp ("Jump")) {
 			if (velocity.y > minJumpVelocity) {
 				velocity.y = minJumpVelocity;
 			}
@@ -114,11 +129,20 @@ public class Player : MonoBehaviour {
 			yield return new WaitForSeconds(intervalTime);
 		}
 	}
+
+	void HandleLayers() {
+		if(!isGrounded)
+			animator.SetLayerWeight(1, 1);
+		else
+			animator.SetLayerWeight(1, 0);
+	}
 	
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if(other.gameObject.CompareTag("Platform")) {
+		if(other.gameObject.CompareTag("Platform") || other.gameObject.CompareTag("Through")) {
 			isGrounded = true;
+			animator.ResetTrigger("Jump");
+			animator.SetBool("Falling", false);
 		}
 
 		if(other.gameObject.CompareTag("FallDetector")) {
@@ -135,7 +159,7 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionExit2D(Collision2D other)
 	{
-		if(other.gameObject.tag == "Platform") {
+		if(other.gameObject.tag == "Platform" || other.gameObject.tag == "Through") {
 			isGrounded = false;
 		}
 	}
