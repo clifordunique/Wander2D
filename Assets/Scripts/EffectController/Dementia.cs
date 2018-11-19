@@ -34,17 +34,27 @@ public class Dementia : EffectController {
 			for(int i = 0; i < itemsList.Length; i++) {
 				currSprite = itemsList[i];
 				tmpColor = currSprite.color;
-				if(tmpColor.a > 0)
+				if(tmpColor.a > 0.05)
 					tmpColor.a -= 0.003f;
 				currSprite.color = tmpColor;
 			}
 		}
 		
-		if(isDone || !isActive){
+		if(isDone){
 			for(int i = 0; i < itemsList.Length; i++) {
 				currSprite = itemsList[i];
 				tmpColor = currSprite.color;
-				if(tmpColor.a < 0.10)
+				if(tmpColor.a < 0.15)
+					tmpColor.a += 0.005f;
+				currSprite.color = tmpColor;
+			}
+		}
+
+		if(!isActive){
+			for(int i = 0; i < itemsList.Length; i++) {
+				currSprite = itemsList[i];
+				tmpColor = currSprite.color;
+				if(tmpColor.a < 1)
 					tmpColor.a += 0.005f;
 				currSprite.color = tmpColor;
 			}

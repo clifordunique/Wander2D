@@ -8,9 +8,12 @@ public class PlayerMentalHealth : MonoBehaviour {
 
 	[SerializeField] private MentalHealth mentalHealth;
 	[SerializeField] private EffectController effect;
-	Vector3 resetPoint;
+	
+	Vector3 resetPoint, checkPoint;
 	bool criticalLevel = false;
 	float timer = 0;
+
+	int lives = 3;
 
 	void Start() {
 		resetPoint = transform.position;
@@ -30,13 +33,26 @@ public class PlayerMentalHealth : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if(other.gameObject.CompareTag("FallDetector")) {
+			transform.position = checkPoint;
 			changeHealth(-0.1f);
+		}
+
+		if(other.gameObject.CompareTag("Checkpoint")) {
+			checkPoint = other.transform.position;
 		}
 	}
 
 	void resetLevel() {
 		changeHealth(1f);
-		transform.position = resetPoint;
+		GetComponentInParent<Player>().respawn();
+		if(lives > 0) {
+			transform.position = checkPoint;
+			lives--;
+		}
+		else {
+			transform.position = resetPoint;
+			lives = 3;
+		}
 	}
 
 	void changeHealth(float damageValue) {
