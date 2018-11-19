@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
-	float moveSpeed = 1.5f;
+	public float moveSpeed = 1.5f;
 
 	public float gravity;
 	float maxJumpVelocity;
@@ -51,12 +51,14 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
-
-
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
 		if(!isGrounded) {
 			walkParticles.Stop();
+		} else {
+			animator.SetLayerWeight(1, 0);
+			animator.ResetTrigger("Jump");
+			animator.SetBool("Falling", false);
 		}
 
 		if(Input.GetAxisRaw("Horizontal") != 0) {
