@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MoveBackWall : MonoBehaviour {
 
+	GameObject wall;
 
 	void Start() {
+		wall = GameObject.Find("wall");
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
 		if(other.gameObject.tag == "Player"){
 			print("Player entered");
-			gameObject.layer = 9; //Platform layer
+			wall.layer = 9; //Platform layer
 		}
 	}
 
