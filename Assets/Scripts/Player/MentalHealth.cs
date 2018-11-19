@@ -5,15 +5,20 @@ using UnityEngine;
 public class MentalHealth : MonoBehaviour {
 
 	private Transform bar;
+	private static SpriteRenderer brainColored;
 	private static SpriteRenderer barSprite;
 	// Use this for initialization
 	void Start () {
 		bar = transform.Find("Bar");
 		barSprite = bar.Find("BarSprite").GetComponent<SpriteRenderer>();
+		brainColored = transform.Find("brain icon_low").Find("brain icon").GetComponent<SpriteRenderer>();
 	}
 	
 	public void SetSize (float size) {
+		Color tmpColor = brainColored.color;
+		tmpColor.a = size;
 		bar.localScale = new Vector3(size, 1f);
+		brainColored.color = tmpColor;
 		SetColor(size);
 	}
 
