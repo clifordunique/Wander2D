@@ -2890,7 +2890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1135399761
 Transform:
   m_ObjectHideFlags: 0
@@ -4781,7 +4781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1837794288
 Transform:
   m_ObjectHideFlags: 0
@@ -5114,7 +5114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!60 &1938277179
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5214,10 +5214,12 @@ PolygonCollider2D:
       - {x: -7.913164, y: 3.7433052}
       - {x: -8.363008, y: 3.7892148}
       - {x: -8.209423, y: 4.324082}
+      - {x: -8.3912945, y: 6.4849014}
       - {x: -8.482888, y: 6.4261956}
       - {x: -8.0498295, y: 6.785342}
       - {x: -8.196779, y: 9.584102}
-      - {x: -8.477512, y: 10.010687}
+      - {x: -8.410269, y: 10.559674}
+      - {x: -8.373153, y: 11.065883}
       - {x: -9.147216, y: 21.34022}
       - {x: -8.255002, y: 29.169704}
       - {x: -5.575203, y: 34.2303}
