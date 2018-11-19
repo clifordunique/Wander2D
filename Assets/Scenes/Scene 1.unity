@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e663e3f3e1ab854da789102a9500600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnHeight: 2
+  respawnHeight: 0
 --- !u!1 &1130547909
 GameObject:
   m_ObjectHideFlags: 0
@@ -3583,7 +3583,7 @@ Transform:
   m_GameObject: {fileID: 1364104729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.664, y: 1.4840002, z: 10}
-  m_LocalScale: {x: 0.9390505, y: 0.47112754, z: 0.47112754}
+  m_LocalScale: {x: 1.5963857, y: 0.47112754, z: 0.47112754}
   m_Children: []
   m_Father: {fileID: 1216489233}
   m_RootOrder: 0
@@ -5418,7 +5418,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1944975810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.2, y: -7.519, z: 0}
+  m_LocalPosition: {x: -9.5, y: -7.519, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_Children:
   - {fileID: 1951260263}
@@ -5491,6 +5491,7 @@ MonoBehaviour:
   TimeInterval: 0.1
   moveSpeed: 1.5
   gravity: 0
+  fadeInSpeed: 0.01
 --- !u!95 &1944975816
 Animator:
   serializedVersion: 3
