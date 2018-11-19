@@ -85,8 +85,6 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		print(velocity.y);
-
 		if (velocity.y < 0) {
 			animator.SetBool("Falling", true);
 		}
