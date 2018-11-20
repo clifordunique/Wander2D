@@ -188,7 +188,35 @@ public class Player : MonoBehaviour {
 		isDead = true;
 	}
 
-	public float getGravity() {
-		return gravity;
+	void recalculateGravity() {
+		gravity = -(2 * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2);
+		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+		minJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
+	}
+
+	public float getMaxJumpHeight() {
+		return maxJumpHeight;
+	}
+
+	public void setMaxJumpHeight(float maxJumpHeight) {
+		this.maxJumpHeight = maxJumpHeight;
+		recalculateGravity();
+	}
+
+	public float getMinJumpHeight() {
+		return minJumpHeight;
+	}
+
+	public void setMinJumpHeight(float minJumpHeight) {
+		this.minJumpHeight = minJumpHeight;
+		recalculateGravity();
+	}
+
+	public float getMoveSpeed() {
+		return moveSpeed;
+	}
+
+	public void setMoveSpeed(float moveSpeed) {
+		this.moveSpeed = moveSpeed;
 	}
 }

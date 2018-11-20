@@ -42,6 +42,13 @@ public class PlayerMentalHealth : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if(other.gameObject.CompareTag("Quicksand")) {
+			changeHealth(-0.0005f);
+		}
+	}
+
 	void resetLevel() {
 		changeHealth(1f);
 		GetComponentInParent<Player>().respawn();
