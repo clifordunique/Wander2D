@@ -23,6 +23,8 @@ public class Player : MonoBehaviour {
 	float xSize;
 	float pxSize;
 	float pxPosition;
+	float exSize;
+	float exPosition;
 
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
@@ -38,11 +40,15 @@ public class Player : MonoBehaviour {
 
 	Controller2D controller;
 	Transform prompt;
+	Transform exclamation;
 
 	void Start() {
 		prompt = transform.Find("Prompt");
+		exclamation = transform.Find("Exclamation");
 		pxSize = prompt.localScale.x;
 		pxPosition = prompt.localPosition.x;
+		exSize = exclamation.localScale.x;
+		exPosition = exclamation.localPosition.x;
 		xSize = transform.localScale.x;
 		controller = GetComponent<Controller2D> ();
 		respawnPoint = transform.position;
@@ -84,11 +90,15 @@ public class Player : MonoBehaviour {
 				transform.localScale = new Vector3(xSize, transform.localScale.y, transform.localScale.z);
 				prompt.localPosition = new Vector3(pxPosition, prompt.localPosition.y, prompt.localPosition.z);
 				prompt.localScale = new Vector3(pxSize, prompt.localScale.y, prompt.localScale.z);
+				exclamation.localPosition = new Vector3(exPosition, exclamation.localPosition.y, exclamation.localPosition.z);
+				exclamation.localScale = new Vector3(exSize, exclamation.localScale.y, exclamation.localScale.z);
 			}
 			else if(Input.GetAxisRaw("Horizontal") < 0) {
 				transform.localScale = new Vector3(-(xSize), transform.localScale.y, transform.localScale.z);
 				prompt.localPosition = new Vector3(-(pxPosition), prompt.localPosition.y, prompt.localPosition.z);
 				prompt.localScale = new Vector3(-(pxSize), prompt.localScale.y, prompt.localScale.z);
+				exclamation.localPosition = new Vector3(-(exPosition), exclamation.localPosition.y, exclamation.localPosition.z);
+				exclamation.localScale = new Vector3(-(exSize), exclamation.localScale.y, exclamation.localScale.z);
 			}
 
 			if(isGrounded)

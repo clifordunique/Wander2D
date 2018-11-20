@@ -6,6 +6,8 @@ public class EnvironmentQuicksand : MonoBehaviour {
 
 	[SerializeField]
 	Player player;
+	[SerializeField]
+	GameObject exclamation;
 	float maxJumpHeight;
 	float minJumpHeight;
 	float moveSpeed;
@@ -22,6 +24,7 @@ public class EnvironmentQuicksand : MonoBehaviour {
 			player.setMaxJumpHeight(0.1f);
 			player.setMinJumpHeight(0.1f);
 			player.setMoveSpeed(moveSpeed/2);
+			exclamation.SetActive(true);
 		}
 	}
 
@@ -31,6 +34,7 @@ public class EnvironmentQuicksand : MonoBehaviour {
 			player.setMaxJumpHeight(maxJumpHeight);
 			player.setMinJumpHeight(minJumpHeight);
 			player.setMoveSpeed(moveSpeed);
+			exclamation.SetActive(false);
 		}
 	}
 }
