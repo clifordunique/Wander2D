@@ -11,6 +11,7 @@ TagManager:
   - CameraZoom
   - InteractObject
   - Through
+  - Quicksand
   layers:
   - Default
   - TransparentFX
