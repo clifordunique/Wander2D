@@ -65,6 +65,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
+		HandleLayers();
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
 		if(isDead) {
