@@ -8,7 +8,8 @@ public class CameraFollow : MonoBehaviour {
 	public float lookAheadDstX;
 	public float lookSmoothTimeX;
 	public float verticalSmoothTime;
-	public float maxY;
+	public float maxX;
+    public float minX;
 	public Vector2 focusAreaSize;
 
 	FocusArea focusArea;
@@ -25,10 +26,12 @@ public class CameraFollow : MonoBehaviour {
 
 	void Start() {
 		initialPosition = transform.position;
+        minX = initialPosition.x;
 		focusArea = new FocusArea (target.collider.bounds, focusAreaSize);
 	}
 
 	void LateUpdate() {
+        print(transform.position.x);
 		focusArea.Update (target.collider.bounds);
 
 		Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
@@ -50,8 +53,8 @@ public class CameraFollow : MonoBehaviour {
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
 		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);
-		focusPosition.x = Mathf.Clamp(focusPosition.x, initialPosition.x, maxY);
-		focusPosition += Vector2.right * currentLookAheadX;
+		focusPosition.x = Mathf.SmoothDamp(focusPosition.x, Mathf.Clamp(focusPosition.x, minX, maxX), ref smoothLookVelocityX, lookSmoothTimeX);
+		//focusPosition += Vector2.right * currentLookAheadX;
 		transform.position = (Vector3)focusPosition + Vector3.forward * -10;
 	}
 
@@ -59,6 +62,16 @@ public class CameraFollow : MonoBehaviour {
 		Gizmos.color = new Color (1, 0, 0, .5f);
 		Gizmos.DrawCube (focusArea.centre, focusAreaSize);
 	}
+
+    public void setMinX(float newMinX)
+    {
+        minX = newMinX;
+    }
+
+    public void setMaxX(float newMaxX)
+    {
+        maxX = newMaxX;
+    }
 
 	struct FocusArea {
 		public Vector2 centre;
