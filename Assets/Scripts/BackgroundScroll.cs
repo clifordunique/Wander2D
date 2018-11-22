@@ -33,11 +33,11 @@ public class BackgroundScroll : MonoBehaviour {
 		transform.position += Vector3.right * (deltaX * parallaxSpeed);
 		lastCameraX = cameraTransform.position.x;
 
-		if(cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
-			ScrollLeft();
+		// if(cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
+		// 	ScrollLeft();
 
-		if(cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone))
-			ScrollRight();
+		// if(cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone))
+		// 	ScrollRight();
 	}
 
 	private void ScrollLeft () {
@@ -57,4 +57,9 @@ public class BackgroundScroll : MonoBehaviour {
 		if(leftIndex == layers.Length)
 			leftIndex = 0;
 	}
+
+    public Transform[] getLayers()
+    {
+        return layers;
+    }
 }
