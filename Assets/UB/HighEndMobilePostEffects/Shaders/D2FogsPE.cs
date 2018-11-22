@@ -18,6 +18,23 @@ namespace UB
         public float Density = 2f;
         public Shader Shader;
         private Material _material;
+        Color newColor;
+        bool colorChange = false;
+
+        public void ChangeColor(Color newColor) {
+            this.newColor = newColor;
+            colorChange = true;
+            
+        }
+
+        void ColorChange() {
+            Color = Color.Lerp(Color, newColor, 0.01f);
+        }
+
+        void Update() {
+            if(colorChange)
+                ColorChange();
+        }
 
         void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
