@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Controller2D : RaycastController {
 	
-	float maxClimbAngle = 60;
+	float maxClimbAngle = 55;
 	float maxDescendAngle = 50;
 	
 	public CollisionInfo collisions;
@@ -68,6 +68,7 @@ public class Controller2D : RaycastController {
 				}
 			
 				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+				// print("slope angle = " + slopeAngle);
 
 				if (i == 0 && slopeAngle <= maxClimbAngle) {
 					if (collisions.descendingSlope) {

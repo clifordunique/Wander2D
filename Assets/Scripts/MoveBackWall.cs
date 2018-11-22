@@ -12,7 +12,7 @@ public class MoveBackWall : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other) {
 		if(other.gameObject.tag == "Player"){
-			print("Player entered");
+			// print("Player entered");
 			wall.layer = 9; //Platform layer
 		}
 	}

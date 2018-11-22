@@ -38,7 +38,7 @@ public class ParallaxTrigger : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            print("is active now");
+            // print("is active now");
             active = true;
         }
     }
