@@ -86,6 +86,7 @@ public class Player : MonoBehaviour {
 			animator.SetLayerWeight(1, 0);
 			animator.ResetTrigger("Jump");
 			animator.SetBool("Falling", false);
+			footsteps.UnPause();
 		}
 
 		if(Input.GetAxisRaw("Horizontal") != 0) {
