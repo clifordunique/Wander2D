@@ -17,6 +17,7 @@ public class GameObjectsToggle : MonoBehaviour {
 	public GameObject[] spritesToEnable = new GameObject[nSpritesToEnable];
 
 	public bool disableSprites = false;
+    public bool enableSprites = false;
 
 	void Update() {
 		Color tmpColor;
@@ -30,7 +31,17 @@ public class GameObjectsToggle : MonoBehaviour {
 					spritesToDisable[i].SetActive(false);
 			}
 		}
-	}
+
+        if (enableSprites) {
+            for (int i = 0; i < spritesToEnable.Length; i++)
+            {
+                tmpColor = spritesToEnable[i].GetComponent<SpriteRenderer>().color;
+                if (tmpColor.a <= 0.70f)
+                    tmpColor.a += rateOfFade;
+                spritesToEnable[i].GetComponent<SpriteRenderer>().color = tmpColor;
+            }
+        }
+    }
 
 	public void Interact()
 	{
@@ -40,6 +51,8 @@ public class GameObjectsToggle : MonoBehaviour {
 
 		if(spritesToDisable.Length > 0)
 			disableSprites = true;
+        if (spritesToEnable.Length > 0)
+            enableSprites = true;
 	}
 
 	void disableGameObjects() {
