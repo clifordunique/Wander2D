@@ -9,15 +9,9 @@ public class PlayerMentalHealth : MonoBehaviour {
 	[SerializeField] private MentalHealth mentalHealth;
 	[SerializeField] private EffectController effect;
 	
-	Vector3 resetPoint, checkPoint;
+	Vector3 checkPoint;
 	bool criticalLevel = false;
 	float timer = 0;
-
-	int lives = 3;
-
-	void Start() {
-		resetPoint = transform.position;
-	}
 
 	void Update() {
 		// print("timer % 60 = " + timer % 60);
@@ -52,14 +46,7 @@ public class PlayerMentalHealth : MonoBehaviour {
 	void resetLevel() {
 		changeHealth(1f);
 		GetComponentInParent<Player>().respawn();
-		if(lives > 0) {
-			transform.position = checkPoint;
-			lives--;
-		}
-		else {
-			transform.position = resetPoint;
-			lives = 3;
-		}
+		transform.position = checkPoint;
 	}
 
 	void changeHealth(float damageValue) {
@@ -85,6 +72,10 @@ public class PlayerMentalHealth : MonoBehaviour {
 		}
 		else {
 			criticalLevel = false;
+		}
+
+		if(health <= 0) {
+			resetLevel();
 		}
 
 		mentalHealth.SetSize(health);
