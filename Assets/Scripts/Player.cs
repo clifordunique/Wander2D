@@ -38,11 +38,15 @@ public class Player : MonoBehaviour {
 	bool isDead = false;
 	public float fadeInSpeed;
 
+	public AudioSource footsteps;
+
 	Controller2D controller;
 	Transform prompt;
 	Transform exclamation;
 
 	void Start() {
+		footsteps = GetComponent<AudioSource>();
+		
 		prompt = transform.Find("Prompt");
 		exclamation = transform.Find("Exclamation");
 		pxSize = prompt.localScale.x;
@@ -106,6 +110,7 @@ public class Player : MonoBehaviour {
 				walkParticles.Play();
 		}
 		else {
+			footsteps.Play();
 			animator.SetInteger("Walk", 0);
 			walkParticles.Stop();
 		}
@@ -115,6 +120,7 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Jump")) {
 			animator.SetTrigger("Jump");
+			footsteps.Pause();
 			if (controller.collisions.below) {
 				velocity.y = maxJumpVelocity;
 			}
