@@ -6,29 +6,30 @@ public class ParallaxTrigger : MonoBehaviour {
 
     [SerializeField]
     GameObject parallax;
-    public float newY;
+    public float fadeRate;
     bool active = false;
-    Vector2 parallaxPos;
-    public float duration = 1.0f;
-    float elapsed = 0.0f;
-    float currentYPos;
+    public SpriteRenderer[] layers;
 
     // Use this for initialization
-    void Start () {
-        parallaxPos = parallax.transform.localPosition;
+    void Start()
+    {
+        layers = new SpriteRenderer[parallax.transform.childCount];
+
+        for (int i = 0; i < parallax.transform.childCount; i++)
+            layers[i] = parallax.transform.GetChild(i).GetComponentInParent<SpriteRenderer>();
     }
 
     void Update()
     {
+        Color tmpColor;
         if (active)
         {
-            print(elapsed);
-            elapsed += (Time.deltaTime / duration);
-            parallaxPos.y = Mathf.Lerp(currentYPos, newY, elapsed);
-            parallax.transform.localPosition = parallaxPos;
-            if (elapsed > 1.0f)
-            {
-                active = false;
+            for(int i = 0; i < layers.Length; i++) {
+                tmpColor = layers[i].color;
+                tmpColor.a -= fadeRate;
+                layers[i].color = tmpColor;
+                if (tmpColor.a <= 0)
+                    parallax.SetActive(false);
             }
         }
     }
@@ -37,10 +38,8 @@ public class ParallaxTrigger : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            elapsed = 0.0f;
+            print("is active now");
             active = true;
-            currentYPos = parallaxPos.y;
-            print("dis bitch here " + currentYPos);
         }
     }
 
