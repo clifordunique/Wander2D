@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InteractJournalEntry : MonoBehaviour {
 
+	public GameObject Journal;
+	public int entryNo;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,5 +19,6 @@ public class InteractJournalEntry : MonoBehaviour {
 	public void Interact()
 	{
 		gameObject.SetActive(false);
+		Journal.GetComponent<JournalScript>().addJournal(entryNo);
 	}
 }
