@@ -7,6 +7,8 @@ public class InteractJournalEntry : MonoBehaviour {
 
 	public AudioSource paperfx;
 
+	public GameObject Journal;
+	public int entryNo;
 	// Use this for initialization
 	void Start () {
 		paperfx = GetComponent<AudioSource>();
@@ -20,5 +22,6 @@ public class InteractJournalEntry : MonoBehaviour {
 	{
 		gameObject.SetActive(false);
 		paperfx.Play();
+		Journal.GetComponent<JournalScript>().addJournal(entryNo);
 	}
 }
