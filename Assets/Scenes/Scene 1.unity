@@ -2026,7 +2026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &277124092
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11133,11 +11133,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2025375700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5f2da0c75492f42b1086138cc1171d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e85c7746c1fa2e49895013f30ff9839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   paperfx: {fileID: 2025375706}
   Journal: {fileID: 718173064}
+  Journalbtn: {fileID: 277124091}
   entryNo: 1
 --- !u!58 &2025375705
 CircleCollider2D:
